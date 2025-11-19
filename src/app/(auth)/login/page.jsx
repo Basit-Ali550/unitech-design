@@ -4,7 +4,7 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import InputField from "../../components/InputFeild";
+import InputField from "../../../components/InputFeild";
 import { Mail, Lock } from "lucide-react";
 import Logo from "../../../../public/images/Logo.svg"
 import Image from "next/image";
@@ -16,7 +16,6 @@ const Login = () => {
 
   const handleSubmit = (values) => {
     console.log("Login submitted:", values);
-    // Add your login logic here (e.g., API call)
   };
 
   return (
@@ -29,7 +28,7 @@ const Login = () => {
         </div>
 
         {/* Title */}
-        <h2 className="text-2xl font-bold text-center mb-6">Let's Sign you in</h2>
+        <h2 className="text-2xl font-bold text-center mb-4">Let's Sign you in</h2>
 
         {/* Form */}
         <Formik
@@ -38,7 +37,7 @@ const Login = () => {
           onSubmit={handleSubmit}
         >
           {() => (
-            <Form className="space-y-6">
+            <Form className="space-y-4">
               {/* Email Input */}
               <InputField
                 label="Email"

@@ -4,9 +4,9 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import InputField from "../../components/InputFeild";
+import InputField from "../../../components/InputFeild";
 import { Mail, Lock, User } from "lucide-react";
-import AuthContainer from "../../components/AuthContainer";
+import AuthContainer from "../../../components/AuthContainer";
 
 const Signup = () => {
   const validationSchema = Yup.object({
@@ -28,7 +28,7 @@ const Signup = () => {
         onSubmit={handleSubmit}
       >
         {() => (
-          <Form className="space-y-6">
+          <Form className="space-y-4">
             <InputField
               label="Name"
               name="name"

@@ -1,7 +1,7 @@
 "use client" 
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import InputField from "./components/InputFeild";
+import InputField from "../components/InputFeild";
 import { Mail, Lock } from "lucide-react"; // Icons for left/right icons
 
 const validationSchema = Yup.object({
