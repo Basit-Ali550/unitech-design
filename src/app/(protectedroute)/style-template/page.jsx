@@ -1,39 +1,40 @@
-// src/app/style-template/page.tsx
 "use client";
-
 import React, { useState } from "react";
-import StyleCard from "../../components/StyleCard";
-import TemplateCard from "../../components/TemplateCard";
+import StyleCard from "../../../components/StyleCard";
+import TemplateCard from "../../../components/TemplateCard";
 import { Plus } from "lucide-react";
-import Template from "../../../public/images/template.jpg";
+import Template from "../../../../public/images/template.jpg";
 import Image from "next/image";
 
-// Mock Data - Image ko properly use karen
-const STYLES = Array(15).fill(null).map((_, i) => ({
-  id: i + 1,
-  name: "Modern Minimalist",
-  description: "Clean lines, neutral colors, and simple geometric shapes for a contemporary look",
-  parameters: 12,
-  image: Template,
-}));
-
-const TEMPLATES = Array(10).fill(null).map((_, i) => ({
-  id: i + 1,
-  name: "Modern Minimalist",
-  description: "Clean lines, neutral colors, and simple geometric shapes for a contemporary look",
-  parameters: 12,
-  image: Template,
-}));
-
+const STYLES = Array(15)
+  .fill(null)
+  .map((_, i) => ({
+    id: i + 1,
+    name: "Modern Minimalist",
+    description:
+      "Clean lines, neutral colors, and simple geometric shapes for a contemporary look",
+    parameters: 12,
+    image: Template,
+  }));
+const TEMPLATES = Array(10)
+  .fill(null)
+  .map((_, i) => ({
+    id: i + 1,
+    name: "Modern Minimalist",
+    description:
+      "Clean lines, neutral colors, and simple geometric shapes for a contemporary look",
+    parameters: 12,
+    image: Template,
+  }));
 export default function StyleTemplateManager() {
   const [activeTab, setActiveTab] = useState("styles");
-
   return (
     <div className="space-y-4 sm:p-6 p-4 rounded-2xl shadow-sm bg-white">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h1 className="text-2xl font-semibold text-gray-900">Style & Template Manager</h1>
-
+        <h1 className="text-2xl font-semibold text-gray-900">
+          Style & Template Manager
+        </h1>
         <div className="flex gap-3">
           <button className="flex items-center gap-2 px-4 py-2 border border-blue-600 text-blue-600 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors">
             <Plus className="w-4 h-4" />
@@ -45,12 +46,7 @@ export default function StyleTemplateManager() {
           </button>
         </div>
       </div>
-
-      {/* Tabs */}
       <div className="">
-        {/* Test Image - Temporary check ke liye */}
-
-
         <div className="flex gap-8">
           <button
             onClick={() => setActiveTab("styles")}
@@ -74,23 +70,12 @@ export default function StyleTemplateManager() {
           </button>
         </div>
       </div>
-
-      {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
         {activeTab === "styles"
-          ? STYLES.map((style) => (
-              <StyleCard 
-                key={style.id} 
-                style={style} 
-              />
-            ))
+          ? STYLES.map((style) => <StyleCard key={style.id} style={style} />)
           : TEMPLATES.map((template) => (
-              <TemplateCard 
-                key={template.id} 
-                template={template} 
-              />
-            ))
-        }
+              <TemplateCard key={template.id} template={template} />
+            ))}
       </div>
     </div>
   );

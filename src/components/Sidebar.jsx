@@ -2,10 +2,19 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Home, Package, Palette, Users, ChevronLeft, ChevronRight } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  Home,
+  Package,
+  Palette,
+  Users,
+  ChevronLeft,
+  ChevronRight,
+  LogOut,
+} from "lucide-react";
 import Image from "next/image";
 import Logo from "../../public/images/Logo.svg";
+import { useAuth } from "../context/AuthContext";
 
 const menuItems = [
   { icon: Home, label: "Dashboard", href: "/dashboard" },
@@ -16,21 +25,27 @@ const menuItems = [
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
-
+  const { logout } = useAuth();
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+  };
   return (
     <div
       className={`${
         collapsed ? "w-20" : "w-64"
-      } bg-white h-screen shadow-sm flex flex-col transition-all duration-300`}
+      } bg-white h-screen shadow-sm border-r border-gray-300 flex flex-col transition-all duration-300`}
     >
-      {/* Logo Section */}
       <div className="flex items-center justify-between p-4 border-b border-gray-300">
         <div className="flex items-center gap-2">
           <Image
             src={Logo}
             alt="Logo"
-            className={`transition-all duration-300 ${collapsed ? "w-8" : "h-10"}`}
+            width={collapsed ? 32 : 56}
+            height={collapsed ? 32 : 56}
+            className="transition-all duration-300"
           />
         </div>
 
@@ -69,6 +84,26 @@ const Sidebar = () => {
           );
         })}
       </nav>
+
+      {/* Logout Button Section */}
+      <div className="border-t border-gray-200 p-4">
+        <button
+          onClick={handleLogout}
+          className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all group ${
+            collapsed ? "justify-center" : ""
+          }`}
+        >
+          <LogOut className="w-5 h-5 flex-shrink-0" />
+          {!collapsed && <span>Logout</span>}
+
+          {/* Tooltip for collapsed state */}
+          {collapsed && (
+            <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50">
+              Logout
+            </div>
+          )}
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import MaterialTable from "../../components/MaterialTable";
+import MaterialTable from "../../../components/MaterialTable";
 
 export default function MaterialListPage() {
   return (

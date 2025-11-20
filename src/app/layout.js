@@ -1,28 +1,19 @@
-// src/app/layout.tsx
-import TopBar from "../components/TopBar";
-import Sidebar from "../components/Sidebar";
-import "./globals.css"; // if you have global styles
+// app/layout.jsx
+import "./globals.css";
+import { AuthProvider } from "../context/AuthContext";
 
-// export const metadata: Metadata = {
-//   title: "Unitec Design",
-//   description: "Analytics & Design Platform",
-// };
+export const metadata = {
+  title: "My App",
+  description: "Next.js Authentication",
+};
 
-export default function RootLayout({
-  children
-}) {
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-gray-50">
-        <div className="flex h-screen">
-          <Sidebar />
-          <div className="flex-1 flex flex-col overflow-hidden">
-           <TopBar/>
-            <main className="flex-1 overflow-auto p-6">
-              {children}
-            </main>
-          </div>
-        </div>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

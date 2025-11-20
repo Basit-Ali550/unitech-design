@@ -1,66 +1,29 @@
-"use client" 
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import InputField from "../components/InputFeild";
-import { Mail, Lock } from "lucide-react"; // Icons for left/right icons
+// app/page.jsx
+"use client";
+import { useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
+import { useRouter } from 'next/navigation';
 
-const validationSchema = Yup.object({
-  email: Yup.string().email("Invalid email address").required("Required"),
-  password: Yup.string().min(6, "Password must be at least 6 characters").required("Required"),
-  time: Yup.string().required("Required"),
-});
+export default function Home() {
+  const { user, loading } = useAuth();
+  const router = useRouter();
 
-const MyForm = () => {
+  useEffect(() => {
+    if (!loading) {
+      if (user) {
+        router.push('/dashboard');
+      } else {
+        router.push('/login');
+      }
+    }
+  }, [user, loading, router]);
+
   return (
-    <Formik
-      initialValues={{
-        email: "",
-        password: "",
-        time: "",
-      }}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log("Form submitted:", values);
-      }}
-    >
-      {() => (
-        <Form className="space-y-4">
-          {/* Email Input */}
-          <InputField
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="Enter your email"
-            leftIcon={Mail}
-          />
-
-          {/* Password Input */}
-          <InputField
-            label="Password"
-            name="password"
-            type="password"
-            placeholder="Enter your password"
-            leftIcon={Lock}
-          />
-
-          {/* Time Input */}
-          <InputField
-            label="Select Time"
-            name="time"
-            type="time"
-            placeholder="Select a time"
-          />
-
-          <button
-            type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded"
-          >
-            Submit
-          </button>
-        </Form>
-      )}
-    </Formik>
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+        <p className="mt-4 text-gray-600">Redirecting...</p>
+      </div>
+    </div>
   );
-};
-
-export default MyForm;
+}

@@ -30,7 +30,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-, "src/app/(auth)/otp/page.jsx"  ],
+, "src/app/(Auth1)/otp/page.jsx"  ],
   "exclude": [
     "node_modules"
   ]
