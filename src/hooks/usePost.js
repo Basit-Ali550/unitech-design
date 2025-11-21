@@ -1,6 +1,6 @@
 // src/hooks/usePost.js
 import { useState } from "react";
-import apiClient from "../lib/apiClient";
+import apiClient from "./apiClient";
 
 const usePost = (endpoint) => {
   const [data, setData] = useState(null);
