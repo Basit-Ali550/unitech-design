@@ -2,12 +2,15 @@
 import "./globals.css";
 import { AuthProvider } from "../context/AuthContext";
 import { Toaster } from "react-hot-toast";
-
 export const metadata = {
-  title: "My App",
+  title: "Unitech Design",
   description: "Next.js Authentication",
+  icons: {
+    icon: "/images/Logo.svg",
+    shortcut: "/images/Logo.svg",
+    apple: "/images/Logo.svg",
+  },
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
