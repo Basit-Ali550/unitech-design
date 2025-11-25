@@ -36,15 +36,15 @@ const Sidebar = () => {
     <div
       className={`${
         collapsed ? "w-20" : "w-64"
-      } bg-white h-screen shadow-sm border-r border-gray-300 flex flex-col transition-all duration-300`}
+      } bg-white h-screen shadow-sm border-r border-gray-300 flex  flex-col transition-all duration-300`}
     >
-      <div className="flex items-center justify-between p-4 border-b border-gray-300">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center py-5.5 px-4 justify-between border-b border-gray-300">
+        <div className="flex items-center pl-6 gap-2">
           <Image
             src={Logo}
             alt="Logo"
-            width={collapsed ? 32 : 56}
-            height={collapsed ? 32 : 56}
+            width={80}
+            height={80}
             className="transition-all duration-300"
           />
         </div>
@@ -86,10 +86,10 @@ const Sidebar = () => {
       </nav>
 
       {/* Logout Button Section */}
-      <div className="border-t border-gray-200 p-4">
+      <div className="px-4 pb-4">
         <button
           onClick={handleLogout}
-          className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all group ${
+          className={`w-full flex items-center gap-3 px-4 py-2 rounded-lg text-gray-600 hover:bg-red-50 hover:text-red-600 transition-all group ${
             collapsed ? "justify-center" : ""
           }`}
         >
