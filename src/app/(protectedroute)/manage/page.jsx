@@ -234,7 +234,7 @@ export default function ManageUsersProjects() {
               onClick={() => handleTabChange("users")}
               className={`pb-1 px-1 cursor-pointer text-sm font-medium border-b transition-colors ${
                 activeTab === "users"
-                  ? "border-blue-600 text-blue-600"
+                  ? "border-[#0461A6] text-[#0461A6]"
                   : "border-transparent text-gray-500 hover:text-gray-700"
               }`}
             >
@@ -244,7 +244,7 @@ export default function ManageUsersProjects() {
               onClick={() => handleTabChange("projects")}
               className={`pb-1 cursor-pointer px-1 text-sm font-medium border-b transition-colors ${
                 activeTab === "projects"
-                  ? "border-blue-600 text-blue-600"
+                  ? "border-[#0461A6] text-[#0461A6]"
                   : "border-transparent text-gray-500 hover:text-gray-700"
               }`}
             >

@@ -21,7 +21,7 @@ const TopBar = () => {
           onClick={() => setOpen(!open)}
         >
           {/* Avatar Letter */}
-          <div className="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center text-lg font-semibold text-white">
+          <div className="w-10 h-10 rounded-full bg-[#0461A6] flex items-center justify-center text-lg font-semibold text-white">
             {initial}
           </div>
 

@@ -42,9 +42,9 @@ const CustomDropdown = ({
         onClick={() => setIsOpen(!isOpen)}
         className={`
           flex items-center justify-between w-full px-4 py-3 
-          border border-gray-300 rounded-xl text-sm font-medium
+          border border-gray-300 rounded-xl text-sm cursor-pointer font-medium
           bg-white text-left
-          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+          focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-[#0461A6]
           transition-all duration-200
           hover:border-gray-400
           min-w-[160px]
@@ -97,7 +97,7 @@ const CustomDropdown = ({
                       transition-colors duration-150
                       ${
                         optionValue === value
-                          ? "bg-blue-50 text-blue-700"
+                          ? "bg-blue-50 text-[#0461A6]"
                           : "text-gray-700 hover:bg-gray-50"
                       }
                     `}
