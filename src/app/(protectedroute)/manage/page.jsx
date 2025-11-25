@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import useGet from "../../../hooks/useGet";
 import UsersTable from "../../../components/UsersTable";
-import ProjectsTable from "../../../components/ProjectsTable"; // Import new table
+import ProjectsTable from "../../../components/ProjectsTable";
 import CustomDropdown from "../../../components/CustomDropdown";
 import { Search, Loader2 } from "lucide-react";
 import TableSkeleton from "../../../components/TableSkeleton";
@@ -43,14 +43,30 @@ export default function ManageUsersProjects() {
   const [statusFilter, setStatusFilter] = useState("");
 
   // === PROJECTS TAB STATES ===
-  const [projectSearch, setProjectSearch] = useState(""); // by user name/email or project name
+  const [projectSearch, setProjectSearch] = useState("");
   const [designTypeFilter, setDesignTypeFilter] = useState("");
-  const [userIdFilter, setUserIdFilter] = useState(""); // optional: filter by specific user
+  const [userIdFilter, setUserIdFilter] = useState(""); // optional
 
-  // Reset page when switching tabs
+  // Reset all filters & search when tab changes
+  useEffect(() => {
+    setPage(1);
+
+    if (activeTab === "users") {
+      // Switching TO Users → clear Projects filters
+      setProjectSearch("");
+      setDesignTypeFilter("");
+      setUserIdFilter("");
+    } else if (activeTab === "projects") {
+      // Switching TO Projects → clear Users filters
+      setUserSearch("");
+      setRoleFilter("");
+      setStatusFilter("");
+    }
+  }, [activeTab]);
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
-    setPage(1);
+    // No need to reset page here — useEffect will handle it + filter reset
   };
 
   // === USERS QUERY PARAMS ===
@@ -85,7 +101,7 @@ export default function ManageUsersProjects() {
         year: "numeric",
       }),
       role: user.role === "admin" ? "Admin" : "User",
-      projects: 0, // will be replaced if needed later
+      projects: 0,
       status: user.profile_status
         .split("_")
         .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
@@ -102,16 +118,9 @@ export default function ManageUsersProjects() {
       page_size: pageSize,
     };
 
-    // Optional: search by project name OR user email/name
-    if (projectSearch) {
-      params.search = projectSearch.trim();
-    }
-    if (designTypeFilter) {
-      params.design_type = designTypeFilter;
-    }
-    if (userIdFilter) {
-      params.user_id = userIdFilter;
-    }
+    if (projectSearch) params.search = projectSearch.trim();
+    if (designTypeFilter) params.design_type = designTypeFilter;
+    if (userIdFilter) params.user_id = userIdFilter;
 
     return params;
   }, [page, projectSearch, designTypeFilter, userIdFilter]);
@@ -123,7 +132,6 @@ export default function ManageUsersProjects() {
     refetch: refetchProjects,
   } = useGet("/api/v1/design/admin/projects", projectsQueryParams);
 
-  // Transform projects for table
   const projects = useMemo(() => {
     if (!projectsData?.projects) return [];
     return projectsData.projects.map((project) => ({
@@ -159,12 +167,12 @@ export default function ManageUsersProjects() {
   const refetch = activeTab === "users" ? refetchUsers : refetchProjects;
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen">
       <div className="">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div>
-            <h1 className="text-3xl  text-gray-900 font-medium">
+            <h1 className="text-3xl text-gray-900 font-medium">
               {activeTab === "users" ? "Manage Users" : "Manage Projects"}
             </h1>
           </div>
@@ -181,10 +189,11 @@ export default function ManageUsersProjects() {
                 }
                 value={activeTab === "users" ? userSearch : projectSearch}
                 onChange={(e) => {
+                  const value = e.target.value;
                   if (activeTab === "users") {
-                    setUserSearch(e.target.value);
+                    setUserSearch(value);
                   } else {
-                    setProjectSearch(e.target.value);
+                    setProjectSearch(value);
                   }
                   setPage(1);
                 }}
@@ -228,11 +237,11 @@ export default function ManageUsersProjects() {
         </div>
 
         {/* Tabs */}
-        <div className=" my-4">
+        <div className="my-6 ">
           <div className="flex gap-8">
             <button
               onClick={() => handleTabChange("users")}
-              className={`pb-1 px-1 cursor-pointer text-sm font-medium border-b transition-colors ${
+              className={`pb-2 px-1 cursor-pointer text-sm font-medium border-b-2 transition-colors ${
                 activeTab === "users"
                   ? "border-[#0461A6] text-[#0461A6]"
                   : "border-transparent text-gray-500 hover:text-gray-700"
@@ -242,7 +251,7 @@ export default function ManageUsersProjects() {
             </button>
             <button
               onClick={() => handleTabChange("projects")}
-              className={`pb-1 cursor-pointer px-1 text-sm font-medium border-b transition-colors ${
+              className={`pb-2 px-1 cursor-pointer text-sm font-medium border-b-2 transition-colors ${
                 activeTab === "projects"
                   ? "border-[#0461A6] text-[#0461A6]"
                   : "border-transparent text-gray-500 hover:text-gray-700"
@@ -258,7 +267,7 @@ export default function ManageUsersProjects() {
 
         {/* Error */}
         {isError && (
-          <div className="bg-red-50 border border-red-200 rounded-xl text-center">
+          <div className="my-10 p-8 bg-red-50 border border-red-200 rounded-xl text-center">
             <p className="text-red-700 font-medium">
               Error loading {activeTab}
             </p>
@@ -290,32 +299,24 @@ export default function ManageUsersProjects() {
         {activeTab === "users" &&
           !isLoading &&
           !isError &&
-          users.length > 0 && (
-            <>
-              <UsersTable users={users} />
-            </>
-          )}
+          users.length > 0 && <UsersTable users={users} />}
 
         {/* Projects Table */}
         {activeTab === "projects" &&
           !isLoading &&
           !isError &&
-          projects.length > 0 && (
-            <>
-              <ProjectsTable projects={projects} />
-            </>
-          )}
+          projects.length > 0 && <ProjectsTable projects={projects} />}
 
         {/* Pagination */}
         {totalPages > 1 && !isLoading && (
-          <div className="flex items-center justify-between mt-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between mt-8 gap-4">
             <p className="text-sm text-gray-600">
               Showing {(page - 1) * pageSize + 1} to{" "}
               {Math.min(page * pageSize, totalCount)} of {totalCount}{" "}
               {activeTab === "users" ? "users" : "projects"}
             </p>
 
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}

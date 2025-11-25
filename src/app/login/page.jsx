@@ -52,8 +52,8 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <div className="min-h-screen  flex items-center justify-center p-4">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
         <div className="flex justify-center mb-6">
           <Image src={Logo} alt="Logo" width={100} height={100} />
         </div>
@@ -86,7 +86,7 @@ const Login = () => {
               />
 
               <div className="flex items-center justify-between text-sm">
-                <div className="flex items-center">
+                <div className="flex cursor-pointer items-center">
                   <input
                     type="checkbox"
                     id="rememberMe"
@@ -95,13 +95,16 @@ const Login = () => {
                     onChange={(e) =>
                       setFieldValue("rememberMe", e.target.checked)
                     }
-                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-[#0461A6]  cursor-pointer focus:ring-[#0461A6]  border-gray-300 rounded"
                   />
-                  <label htmlFor="rememberMe" className="ml-2 text-gray-700">
+                  <label
+                    htmlFor="rememberMe"
+                    className="ml-2 cursor-pointer text-gray-700"
+                  >
                     Remember me
                   </label>
                 </div>
-                <a href="#" className="text-blue-600 hover:underline">
+                <a href="#" className="text-[#0461A6]  hover:underline">
                   Forgot Password?
                 </a>
               </div>
@@ -109,14 +112,14 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-70"
+                className="w-full bg-[#0461A6] text-white py-3 rounded-lg font-semibold hover:bg-blue-800 cursor-pointer transition-colors disabled:opacity-70"
               >
                 {isSubmitting ? "Signing in..." : "SIGN IN"}
               </button>
 
               <p className="text-center text-gray-500 text-sm">
                 Don't have an account?{" "}
-                <a href="#" className="text-blue-600 hover:underline">
+                <a href="#" className="text-[#0461A6] hover:underline">
                   Sign up
                 </a>
               </p>

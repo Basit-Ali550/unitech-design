@@ -22,7 +22,8 @@ const InputField = ({
   const inputRef = useRef(null);
   const timePickerRef = useRef(null);
 
-  const inputType = type === "password" ? (showPassword ? "text" : "password") : type;
+  const inputType =
+    type === "password" ? (showPassword ? "text" : "password") : type;
   const hasError = meta.touched && meta.error;
 
   // Handle clicks outside to close time picker
@@ -107,7 +108,9 @@ const InputField = ({
                 : ""
             }
             ${LeftIcon ? "pl-10" : ""}
-            ${RightIcon || type === "password" || type === "time" ? "pr-10" : ""}
+            ${
+              RightIcon || type === "password" || type === "time" ? "pr-10" : ""
+            }
             ${
               type === "number"
                 ? "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
@@ -130,9 +133,10 @@ const InputField = ({
         />
 
         <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-          {RightIcon && type !== "password" && type !== "number" && type !== "time" && (
-            <RightIcon className="h-4 w-4 text-gray-700" />
-          )}
+          {RightIcon &&
+            type !== "password" &&
+            type !== "number" &&
+            type !== "time" && <RightIcon className="h-4 w-4 text-gray-700" />}
 
           {type === "password" && !RightIcon && (
             <button
@@ -141,9 +145,9 @@ const InputField = ({
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? (
-                <EyeOff className="h-4 w-4" />
+                <EyeOff className="h-4 cursor-pointer w-4" />
               ) : (
-                <Eye className="h-4 w-4" />
+                <Eye className="h-4 cursor-pointer w-4" />
               )}
             </button>
           )}
