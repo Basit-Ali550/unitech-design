@@ -16,7 +16,9 @@ const nextConfig = {
   },
   
   // Enable SWC minification (better performance)
-  swcMinify: true,
+  // NOTE: `swcMinify` is no longer a valid top-level option in newer Next.js
+  // releases (Turbopack / Next 16+). Next.js controls minification internally
+  // now, so we remove this option to avoid the invalid-config warning.
   
   // Handle redirects if needed
   async redirects() {
