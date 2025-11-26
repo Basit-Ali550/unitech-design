@@ -129,9 +129,9 @@ const UsersTable = ({ users, onStatusUpdate }) => {
               <th className="text-left px-6 py-4 text-sm font-medium text-gray-700">
                 Status
               </th>
-              <th className="text-left px-6 py-4 text-sm font-medium text-gray-700">
+              {/* <th className="text-left px-6 py-4 text-sm font-medium text-gray-700">
                 Actions
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -167,7 +167,7 @@ const UsersTable = ({ users, onStatusUpdate }) => {
                     onStatusUpdate={onStatusUpdate}
                   />
                 </td>
-                <td className="px-6 py-4">
+                {/* <td className="px-6 py-4">
                   <div className="flex items-center gap-2">
                     <button className="p-2 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 transition-colors">
                       <Edit2 className="w-4 h-4" />
@@ -176,7 +176,7 @@ const UsersTable = ({ users, onStatusUpdate }) => {
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

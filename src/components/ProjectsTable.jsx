@@ -95,9 +95,9 @@ const ProjectsTable = ({ projects }) => {
               <th className="text-left px-6 py-4 text-sm font-medium text-gray-700">
                 Created
               </th>
-              <th className="text-left px-6 py-4 text-sm font-medium text-gray-700">
+              {/* <th className="text-left px-6 py-4 text-sm font-medium text-gray-700">
                 Actions
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
@@ -135,7 +135,7 @@ const ProjectsTable = ({ projects }) => {
                 <td className="px-6 py-4 text-sm text-gray-600">
                   {project.created}
                 </td>
-                <td className="px-6 py-4">
+                {/* <td className="px-6 py-4">
                   <div className="flex items-center gap-2">
                     {project.originalImage && (
                       <a
@@ -154,7 +154,7 @@ const ProjectsTable = ({ projects }) => {
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

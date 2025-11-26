@@ -155,10 +155,10 @@ const MaterialCreatePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          <div className="px-8 py-6 border-b border-gray-100">
+    <div className="min-h-screen ">
+      <div className="">
+        <div className="bg-white rounded-2xl  border border-gray-100 overflow-hidden">
+          <div className="px-4 py-6 border-b border-gray-100">
             <h1 className="text-2xl font-bold text-gray-900">
               Create New Material
             </h1>
@@ -167,7 +167,7 @@ const MaterialCreatePage = () => {
             </p>
           </div>
 
-          <div className="p-8">
+          <div className="p-4">
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -185,8 +185,8 @@ const MaterialCreatePage = () => {
                       thumbnail)
                     </p>
 
-                    <div className="max-w-2xl mx-auto">
-                      <div className="border-4 border-dashed border-blue-300 rounded-2xl bg-white hover:border-blue-400 transition-all duration-300 cursor-pointer">
+                    <div className="">
+                      <div className="border-3 border-dashed border-blue-200 rounded-2xl bg-white hover:border-blue-300 transition-all duration-300 cursor-pointer">
                         <input
                           type="file"
                           accept="image/*"
@@ -218,7 +218,7 @@ const MaterialCreatePage = () => {
                             </div>
                           ) : (
                             <div className="space-y-4">
-                              <div className="mx-auto w-20 h-20 text-blue-500">
+                              <div className="mx-auto w-20 h-20 text-blue-300">
                                 <svg
                                   fill="none"
                                   stroke="currentColor"
@@ -257,68 +257,6 @@ const MaterialCreatePage = () => {
                         name="supplier_name"
                         placeholder="e.g., Stone World Inc."
                       />
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Supplier Logo (Optional)
-                        </label>
-                        <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 hover:border-gray-400 bg-white">
-                          <input
-                            type="file"
-                            accept="image/*"
-                            className="hidden"
-                            id="supplier-logo"
-                            onChange={(e) =>
-                              handleSupplierLogoUpload(e, setFieldValue)
-                            }
-                          />
-                          <label
-                            htmlFor="supplier-logo"
-                            className="cursor-pointer block text-center"
-                          >
-                            {supplierLogoPreview ? (
-                              <div className="space-y-3">
-                                <img
-                                  src={supplierLogoPreview}
-                                  alt="Logo"
-                                  className="mx-auto h-24 w-24 object-contain rounded-full border-2"
-                                />
-                                {supplierLogoUploading ? (
-                                  <p className="text-blue-600 text-sm">
-                                    Uploading...
-                                  </p>
-                                ) : values.supplier_logo_url?.startsWith(
-                                    "http"
-                                  ) ? (
-                                  <p className="text-green-600 text-sm">
-                                    Logo uploaded
-                                  </p>
-                                ) : null}
-                              </div>
-                            ) : (
-                              <div className="py-4">
-                                <div className="mx-auto w-12 h-12 text-gray-400">
-                                  <svg
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                  >
-                                    <path
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth={2}
-                                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h-4m-6 0H5"
-                                    />
-                                  </svg>
-                                </div>
-                                <p className="text-sm text-gray-600 mt-2">
-                                  Click to upload logo
-                                </p>
-                              </div>
-                            )}
-                          </label>
-                        </div>
-                      </div>
                     </div>
 
                     <div className="space-y-6">
@@ -332,7 +270,65 @@ const MaterialCreatePage = () => {
                       />
                     </div>
                   </div>
-
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Supplier Logo (Optional)
+                    </label>
+                    <div className="border-3 border-dashed border-blue-200 rounded-2xl bg-white py-6 hover:border-blue-300 transition-all duration-300 cursor-pointer">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        id="supplier-logo"
+                        onChange={(e) =>
+                          handleSupplierLogoUpload(e, setFieldValue)
+                        }
+                      />
+                      <label
+                        htmlFor="supplier-logo"
+                        className="cursor-pointer block text-center"
+                      >
+                        {supplierLogoPreview ? (
+                          <div className="space-y-3">
+                            <img
+                              src={supplierLogoPreview}
+                              alt="Logo"
+                              className="mx-auto h-24 w-24 object-contain rounded-full border-2"
+                            />
+                            {supplierLogoUploading ? (
+                              <p className="text-blue-600 text-sm">
+                                Uploading...
+                              </p>
+                            ) : values.supplier_logo_url?.startsWith("http") ? (
+                              <p className="text-green-600 text-sm">
+                                Logo uploaded
+                              </p>
+                            ) : null}
+                          </div>
+                        ) : (
+                          <div className="py-4">
+                            <div className="mx-auto w-12 h-12 text-gray-400">
+                              <svg
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h-4m-6 0H5"
+                                />
+                              </svg>
+                            </div>
+                            <p className="text-sm text-gray-600 mt-2">
+                              Click to upload logo
+                            </p>
+                          </div>
+                        )}
+                      </label>
+                    </div>
+                  </div>
                   {/* Rest of the form */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-6">
@@ -412,11 +408,11 @@ const MaterialCreatePage = () => {
                     </div>
                   )}
 
-                  <div className="flex justify-between items-center pt-8 border-t border-gray-200">
+                  <div className="flex justify-end gap-x-4 items-center pt-8 border-t border-gray-200">
                     <button
                       type="button"
                       onClick={() => router.back()}
-                      className="px-6 py-3 border border-gray-300 rounded-xl text-gray-700 hover:bg-gray-50 font-medium"
+                      className="px-8 py-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-100 text-gray-700 disabled:opacity-50 font-medium transition shadow-sm"
                     >
                       Cancel
                     </button>
@@ -427,7 +423,7 @@ const MaterialCreatePage = () => {
                         materialImageUploading ||
                         supplierLogoUploading
                       }
-                      className="px-8 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 disabled:opacity-50 font-medium transition shadow-md"
+                      className="px-8 py-3 bg-blue-600 text-white rounded-xl cursor-pointer hover:bg-blue-700 disabled:opacity-50 font-medium transition shadow-md"
                     >
                       {isSubmitting ? "Creating Material..." : "Save Material"}
                     </button>
