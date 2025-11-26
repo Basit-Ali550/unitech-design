@@ -9,6 +9,7 @@ const nextConfig = {
   // Optimize for serverless deployment (Vercel's default)
   output: 'standalone', // or 'export' if you're doing static site
   
+  
   // Handle image domains if using external images
   images: {
     domains: [], // Add your image domains here
